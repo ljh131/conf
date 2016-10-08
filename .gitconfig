@@ -1,0 +1,13 @@
+[color]
+	ui = true
+[diff]
+	tool = vimdiff
+[alias]
+	st = status
+	di = diff
+	co = checkout
+	ci = commit
+	dit = difftool
+	l = log --graph --all --decorate --pretty=format:'%C(auto)%h%C(auto)%d %C(reset)%s %C(bold white)(%cr) %C(reset)<%an>'
+[push]
+	default = simple

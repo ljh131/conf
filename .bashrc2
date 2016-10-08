@@ -1,0 +1,20 @@
+#!/bin/bash
+
+ulimit -c unlimited
+
+export TMOUT=86400
+
+export SVN_EDITOR=vim
+export GIT_EDITOR=vim
+
+alias ll='ls -lF'
+
+alias vcurl='curl -o /dev/null -v 2>&1'
+alias qcurl='curl >/dev/null 2>&1'
+
+function search() {
+	pat=$1
+	echo $pat
+	find -name '*.[ch]' -o -name '*.java' -o -name '*.sh' -o -name '*.py' |xargs egrep -n "$pat"
+}
+
