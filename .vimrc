@@ -89,7 +89,7 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'The-NERD-tree'
 Plugin 'neocomplcache'
@@ -226,3 +226,7 @@ endif
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 "let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+""" fix vundle bug (correct tabstop for python)
+autocmd Filetype python setlocal expandtab ts=2 sw=2 sts=2
+
