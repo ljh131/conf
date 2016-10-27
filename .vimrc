@@ -6,12 +6,6 @@ set autoindent
 set ff=unix
 set bg=dark
 
-""" tab
-set ts=2
-set sw=2
-set sts=2
-set expandtab
-
 syntax on
 let &tenc=&enc
 set encoding=utf-8
@@ -21,22 +15,6 @@ set ruler
 set showcmd
 set showmatch
 set title
-
-""" key mapping
-map <F5> :!starscope; starscope -e ctags; starscope -e cscope<cr>:csc reset<cr>
-map <F6> :cw<cr>
-
-map <F7> :tabp<cr>
-map <F8> :tabn<cr>
-map <F9> :tab sp<cr>
-
-map <F10> :vimgrep /TODO\\|FIXME\\|XXX/ %:p:h/*<cr>:cw<cr>
-
-""" ctags configuration
-set tags=tags,./tags,../tags,/usr/include/tags,/usr/local/include/tags
-
-set noshowmode
-set wildignore+=*.so,*.swp,*.zip,*.o,*.gz     " Linux/MacOSX
 
 "nnoremap ff :marks<cr>
 "nnoremap fc :delmarks a-z0-9<cr>
@@ -52,10 +30,45 @@ set noic
 set scs
 "set ls=2
 
+set noshowmode
+set wildignore+=*.so,*.swp,*.zip,*.o,*.gz     " Linux/MacOSX
+set tags=tags,./tags,../tags,/usr/include/tags,/usr/local/include/tags
+
+""" tab
+set ts=2
+set sw=2
+set sts=2
+set expandtab
+
 "make vim save and load the folding of the document each time it loads"
 ""also places the cursor in the last place that it was left."
 "au BufWinLeave * mkview
 "au BufWinEnter * silent loadview
+
+
+""" key mapping
+map <F5> :!starscope; starscope -e ctags; starscope -e cscope<cr>:csc reset<cr>
+map <F6> :cw<cr>
+
+map <F7> :tabp<cr>
+map <F8> :tabn<cr>
+map <F9> :tab sp<cr>
+
+map <F10> :vimgrep /TODO\\|FIXME\\|XXX/ %:p:h/*<cr>:cw<cr>
+
+""" shortcuts
+map ,q :q<CR>
+map ,w :w<CR>
+
+map <C-n> :tabn<cr>
+map <C-m> :tabp<cr>
+
+""" settings from http://amix.dk/vim/vimrc.html
+""" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
 if has("autocmd")
 	  " When editing a file, always jump to the last cursor position
@@ -65,20 +78,8 @@ if has("autocmd")
 	    \ endif
   endif
 
-""" settings from http://amix.dk/vim/vimrc.html
-""" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-""" shortcuts
-map ,q :q<CR>
-map ,w :w<CR>
-
 
 """ Vundle
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -135,8 +136,8 @@ let g:ctrlp_extensions = ['tag']
 
 let g:ctrlp_lazy_update = 1
 
-""" neocomplcache
 
+""" neocomplcache
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -227,6 +228,6 @@ endif
 " https://github.com/c9s/perlomni.vim
 "let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
+
 """ fix vundle bug (correct tabstop for python)
 autocmd Filetype python setlocal expandtab ts=2 sw=2 sts=2
-
