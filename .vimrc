@@ -97,12 +97,14 @@ Plugin 'neocomplcache'
 Plugin 'ctrlp.vim'
 
 " it's too buggy!!!
-"Plugin 'MattesGroeger/vim-bookmarks'
+Plugin 'MattesGroeger/vim-bookmarks'
 
 " language specific
 "Plugin 'slim-template/vim-slim.git'
 Plugin 'pangloss/vim-javascript' 
 Plugin 'mxw/vim-jsx' 
+Plugin 'kchmck/vim-coffee-script'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -227,6 +229,14 @@ endif
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 "let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+
+""" bookmark
+highlight BookmarkSign ctermbg=blue ctermfg=NONE
+highlight BookmarkLine ctermbg=blue ctermfg=NONE
+let g:bookmark_sign = '⚑'
+let g:bookmark_highlight_lines = 1
+let g:bookmark_auto_save = 0
 
 
 """ fix vundle bug (correct tabstop for python)
