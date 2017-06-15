@@ -47,7 +47,7 @@ set expandtab
 
 
 """ key mapping
-map <F5> :!starscope; starscope -e ctags; starscope -e cscope<cr>:csc reset<cr>
+map <F5> :!rvm 2.2.4 do starscope; rvm 2.2.4 do starscope -e ctags; rvm 2.2.4 do starscope -e cscope<cr>:csc reset<cr>
 map <F6> :cw<cr>
 
 map <F7> :tabp<cr>
@@ -232,8 +232,8 @@ endif
 
 
 """ bookmark
-highlight BookmarkSign ctermbg=blue ctermfg=NONE
-highlight BookmarkLine ctermbg=blue ctermfg=NONE
+highlight BookmarkSign ctermbg=white ctermfg=NONE
+highlight BookmarkLine ctermbg=white ctermfg=NONE
 let g:bookmark_sign = '⚑'
 let g:bookmark_highlight_lines = 1
 let g:bookmark_auto_save = 0
