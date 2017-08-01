@@ -1,4 +1,4 @@
-# Install
+# Setup
 ```
 $ git clone https://github.com/ljh131/conf.git
 $ cd linux-config
