@@ -1,7 +1,7 @@
 # Setup
 ```
 $ git clone https://github.com/ljh131/conf.git
-$ cd linux-config
+$ cd conf
 $ ./setup.sh
-$ echo '. ~/.bashrc2' >> ~/.bashrc
+$ echo '. ~/.mybashrc' >> ~/.bashrc
 ```
