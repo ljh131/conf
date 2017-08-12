@@ -232,8 +232,8 @@ endif
 
 
 """ bookmark
-highlight BookmarkSign ctermbg=white ctermfg=NONE
-highlight BookmarkLine ctermbg=white ctermfg=NONE
+highlight BookmarkSign ctermbg=blue ctermfg=NONE
+highlight BookmarkLine ctermbg=blue ctermfg=NONE
 let g:bookmark_sign = '⚑'
 let g:bookmark_highlight_lines = 1
 let g:bookmark_auto_save = 0
