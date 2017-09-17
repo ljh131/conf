@@ -13,3 +13,6 @@
 	l = log --graph --all --decorate --pretty=format:'%C(auto)%h%C(auto)%d %C(reset)%s %C(bold white)(%cr) %C(reset)<%an>'
 [push]
 	default = simple
+[user]
+	email = ljh131@gmail.com
+	name = ljh131

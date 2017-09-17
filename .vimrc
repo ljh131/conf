@@ -104,6 +104,7 @@ Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'pangloss/vim-javascript' 
 Plugin 'mxw/vim-jsx' 
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'andreshazard/vim-freemarker'
 
 
 " All of your Plugins must be added before the following line
