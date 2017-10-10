@@ -47,6 +47,8 @@ set expandtab
 
 
 """ key mapping
+inoremap jj <Esc>
+
 map <F5> :!rvm 2.2.4 do starscope; rvm 2.2.4 do starscope -e ctags; rvm 2.2.4 do starscope -e cscope<cr>:csc reset<cr>
 map <F6> :cw<cr>
 
@@ -103,7 +105,7 @@ Plugin 'MattesGroeger/vim-bookmarks'
 "Plugin 'slim-template/vim-slim.git'
 Plugin 'pangloss/vim-javascript' 
 Plugin 'mxw/vim-jsx' 
-Plugin 'kchmck/vim-coffee-script'
+"Plugin 'kchmck/vim-coffee-script'
 Plugin 'andreshazard/vim-freemarker'
 
 

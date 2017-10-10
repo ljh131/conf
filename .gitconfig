@@ -16,3 +16,5 @@
 [user]
 	email = ljh131@gmail.com
 	name = ljh131
+[credential]
+	helper = cache --timeout=8640000
