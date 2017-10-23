@@ -18,7 +18,7 @@ alias qcurl='curl >/dev/null 2>&1'
 function search() {
 	pat=$1
 	echo $pat
-  fgrep "$pat" . -r -i
+  fgrep "$pat" . -r -I -i
 }
 
 function save() {
