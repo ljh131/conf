@@ -1,3 +1,6 @@
+"
+" basic settings
+"
 set nocompatible
 set cindent
 set smartindent
@@ -16,8 +19,6 @@ set showcmd
 set showmatch
 set title
 
-"nnoremap ff :marks<cr>
-"nnoremap fc :delmarks a-z0-9<cr>
 set completeopt-=preview
 
 set nu
@@ -34,54 +35,41 @@ set noshowmode
 set wildignore+=*.so,*.swp,*.zip,*.o,*.gz     " Linux/MacOSX
 set tags=tags,./tags,../tags,/usr/include/tags,/usr/local/include/tags
 
-""" tab
 set ts=2
 set sw=2
 set sts=2
 set expandtab
 
-"make vim save and load the folding of the document each time it loads"
-""also places the cursor in the last place that it was left."
-"au BufWinLeave * mkview
-"au BufWinEnter * silent loadview
 
-
-""" key mapping
+"
+" key mappings
+"
 inoremap jj <Esc>
 
 map <F5> :!rvm 2.2.4 do starscope; rvm 2.2.4 do starscope -e ctags; rvm 2.2.4 do starscope -e cscope<cr>:csc reset<cr>
 map <F6> :cw<cr>
-
 map <F7> :tabp<cr>
 map <F8> :tabn<cr>
 map <F9> :tab sp<cr>
-
 map <F10> :vimgrep /TODO\\|FIXME\\|XXX/ %:p:h/*<cr>:cw<cr>
 
-""" shortcuts
 map ,q :q<CR>
 map ,w :w<CR>
 
 map <C-n> :tabn<cr>
 map <C-m> :tabp<cr>
 
-""" settings from http://amix.dk/vim/vimrc.html
-""" Smart way to move between windows
+" settings from http://amix.dk/vim/vimrc.html
+" Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-if has("autocmd")
-	  " When editing a file, always jump to the last cursor position
-	   autocmd BufReadPost *
-	    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-	    \   exe "normal g'\"" |
-	    \ endif
-  endif
 
-
-""" Vundle
+"
+" Vundle
+"
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -97,9 +85,11 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'The-NERD-tree'
 Plugin 'neocomplcache'
 Plugin 'ctrlp.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'MattesGroeger/vim-bookmarks' " warn: it's too buggy!!!
+Plugin 'altercation/vim-colors-solarized'
 
-" it's too buggy!!!
-Plugin 'MattesGroeger/vim-bookmarks'
 
 " language specific
 "Plugin 'slim-template/vim-slim.git'
@@ -125,6 +115,9 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 
+"
+" plugins setting
+"
 """ NERDTree
 let NERDTreeWinPos = "left"
 nmap <F11> :NERDTreeToggle<CR>
@@ -242,5 +235,37 @@ let g:bookmark_highlight_lines = 1
 let g:bookmark_auto_save = 0
 
 
-""" fix vundle bug (correct tabstop for python)
+""" airline
+let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
+let g:airline_theme='solarized'
+"let g:airline_solarized_bg='dark'
+set laststatus=2 " turn on bottom bar
+
+
+""" solarized
+if &term =~ '256color'
+    " Disable Background Color Erase (BCE) so that color schemes
+    " work properly when Vim is used inside tmux and GNU screen.
+    set t_ut=
+endif
+
+"let g:solarized_termcolors=256	" enable this if you don't use solarized in terminal emulator
+syntax enable
+set background=dark
+colorscheme solarized
+
+
+"
+" others
+"
+if has("autocmd")
+	  " When editing a file, always jump to the last cursor position
+	   autocmd BufReadPost *
+	    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+	    \   exe "normal g'\"" |
+	    \ endif
+  endif
+
+" fix vundle bug (correct tabstop for python)
 autocmd Filetype python setlocal expandtab ts=2 sw=2 sts=2
+
