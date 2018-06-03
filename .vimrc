@@ -24,7 +24,7 @@ set completeopt-=preview
 set nu
 set hlsearch
 set ignorecase
-"set incsearch
+set noincsearch " explicit for nvim
 set ru
 set noic
 
@@ -83,12 +83,21 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'The-NERD-tree'
-Plugin 'neocomplcache'
 Plugin 'ctrlp.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
 Plugin 'MattesGroeger/vim-bookmarks' " warn: it's too buggy!!!
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'itchyny/lightline.vim'
+
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim'
+  Plugin 'shougo/neco-syntax'
+  Plugin 'Shougo/neosnippet.vim'
+  Plugin 'Shougo/neosnippet-snippets'
+else
+  Plugin 'neocomplcache'
+endif
 
 
 " language specific
@@ -129,11 +138,71 @@ let g:ctrlp_working_path_mode = 'c'
 let g:ctrlp_max_files = 0
 " Search from current directory instead of project root
 let g:ctrlp_working_path_mode = 0
-
 let g:ctrlp_extensions = ['tag']
-
 let g:ctrlp_lazy_update = 1
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|public$\|log$\|tmp$\|vendor$',
+  \ 'file': '\v\.(exe|so|dll)$'
+\ }
 
+
+if has('nvim')
+
+""" deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+
+" disable autocomplete by default
+"let b:deoplete_disable_auto_complete=1 
+"let g:deoplete_disable_auto_complete=1
+"call deoplete#custom#buffer_option('auto_complete', v:false)
+
+if !exists('g:deoplete#omni#input_patterns')
+    let g:deoplete#omni#input_patterns = {}
+endif
+
+" Disable the candidates in Comment/String syntaxes.
+call deoplete#custom#source('_',
+            \ 'disabled_syntaxes', ['Comment', 'String'])
+
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" set sources
+let g:deoplete#sources = {}
+"let g:deoplete#sources.cpp = ['LanguageClient']
+"let g:deoplete#sources.python = ['LanguageClient']
+"let g:deoplete#sources.python3 = ['LanguageClient']
+"let g:deoplete#sources.rust = ['LanguageClient']
+"let g:deoplete#sources.c = ['LanguageClient']
+"let g:deoplete#sources.vim = ['vim']
+
+" map tab to select
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+
+""" neosnippet
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+else
 
 """ neocomplcache
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
@@ -226,6 +295,8 @@ endif
 " https://github.com/c9s/perlomni.vim
 "let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
+endif
+
 
 """ bookmark
 highlight BookmarkSign ctermbg=blue ctermfg=NONE
@@ -236,10 +307,10 @@ let g:bookmark_auto_save = 0
 
 
 """ airline
-let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
-let g:airline_theme='solarized'
+"let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
+"let g:airline_theme='solarized'
 "let g:airline_solarized_bg='dark'
-set laststatus=2 " turn on bottom bar
+"set laststatus=2 " turn on bottom bar
 
 
 """ solarized
@@ -255,16 +326,30 @@ set background=dark
 colorscheme solarized
 
 
+""" lightline
+" Replace filename component of Lightline statusline
+let g:lightline = {
+\ 'component_function': {
+\   'filename': 'FilenameForLightline'
+\ }
+\ }
+
+" Show full path of filename
+function! FilenameForLightline()
+    return expand('%')
+endfunction
+
+
 "
 " others
 "
 if has("autocmd")
-	  " When editing a file, always jump to the last cursor position
-	   autocmd BufReadPost *
-	    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-	    \   exe "normal g'\"" |
-	    \ endif
-  endif
+  " When editing a file, always jump to the last cursor position
+   autocmd BufReadPost *
+    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+    \   exe "normal g'\"" |
+    \ endif
+endif
 
 " fix vundle bug (correct tabstop for python)
 autocmd Filetype python setlocal expandtab ts=2 sw=2 sts=2
