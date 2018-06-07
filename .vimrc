@@ -106,6 +106,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx' 
 "Plugin 'kchmck/vim-coffee-script'
 Plugin 'andreshazard/vim-freemarker'
+Plugin 'slim-template/vim-slim.git'
+Plugin 'elixir-editors/vim-elixir'
 
 
 " All of your Plugins must be added before the following line
@@ -310,7 +312,6 @@ let g:bookmark_auto_save = 0
 "let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
 "let g:airline_theme='solarized'
 "let g:airline_solarized_bg='dark'
-"set laststatus=2 " turn on bottom bar
 
 
 """ solarized
@@ -327,6 +328,8 @@ colorscheme solarized
 
 
 """ lightline
+set laststatus=2 " turn on bottom bar
+
 " Replace filename component of Lightline statusline
 let g:lightline = {
 \ 'component_function': {
