@@ -332,14 +332,31 @@ set laststatus=2 " turn on bottom bar
 
 " Replace filename component of Lightline statusline
 let g:lightline = {
+\ 'active': {
+\   'left': [ [ 'mode', 'paste' ],
+\             [ 'readonly', 'filename' ] ],
+\ },
 \ 'component_function': {
-\   'filename': 'FilenameForLightline'
-\ }
+\   'filename': 'LightlineFilename',
+\   'fileformat': 'LightlineFileformat',
+\   'filetype': 'LightlineFiletype',
+\ },
 \ }
 
-" Show full path of filename
-function! FilenameForLightline()
-    return expand('%')
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFilename()
+  "let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  " Show full path of filename
+  let filename = expand('%') !=# '' ? expand('%') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
 endfunction
 
 
