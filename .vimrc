@@ -1,6 +1,10 @@
 "
 " basic settings
 "
+if !has('gui_running')
+  set t_Co=256
+endif
+
 set nocompatible
 set cindent
 set smartindent
@@ -329,9 +333,11 @@ colorscheme solarized
 
 """ lightline
 set laststatus=2 " turn on bottom bar
+set noshowmode
 
 " Replace filename component of Lightline statusline
 let g:lightline = {
+\ 'colorscheme': 'wombat',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
 \             [ 'readonly', 'filename' ] ],
