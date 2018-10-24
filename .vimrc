@@ -5,6 +5,9 @@ if !has('gui_running')
   set t_Co=256
 endif
 
+set ttyfast
+set lazyredraw
+
 set nocompatible
 set cindent
 set smartindent
@@ -88,11 +91,10 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'The-NERD-tree'
 Plugin 'ctrlp.vim'
-"Plugin 'vim-airline/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
 Plugin 'MattesGroeger/vim-bookmarks' " warn: it's too buggy!!!
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'itchyny/lightline.vim'
+Plugin 'mileszs/ack.vim'
 
 if has('nvim')
   Plugin 'Shougo/deoplete.nvim'
@@ -103,9 +105,7 @@ else
   Plugin 'neocomplcache'
 endif
 
-
 " language specific
-"Plugin 'slim-template/vim-slim.git'
 Plugin 'pangloss/vim-javascript' 
 Plugin 'mxw/vim-jsx' 
 "Plugin 'kchmck/vim-coffee-script'
