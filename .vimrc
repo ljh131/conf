@@ -39,7 +39,7 @@ set scs
 "set ls=2
 
 set noshowmode
-set wildignore+=*.so,*.swp,*.zip,*.o,*.gz     " Linux/MacOSX
+set wildignore+=*.so,*.swp,*.zip,*.o,*.gz,*/node_modules/*
 set tags=tags,./tags,../tags,/usr/include/tags,/usr/local/include/tags
 
 set ts=2
