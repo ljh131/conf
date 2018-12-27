@@ -63,8 +63,8 @@ map <F10> :vimgrep /TODO\\|FIXME\\|XXX/ %:p:h/*<cr>:cw<cr>
 map ,q :q<CR>
 map ,w :w<CR>
 
-map <C-n> :tabn<cr>
-map <C-m> :tabp<cr>
+map <C-n> gt
+map <C-m> gT
 
 " settings from http://amix.dk/vim/vimrc.html
 " Smart way to move between windows
