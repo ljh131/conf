@@ -3,16 +3,20 @@
 ulimit -c unlimited
 
 export TERM=xterm-256color
-
-PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;35m\]\w\[\033[1;31m\]\$\[\033[0m\] '
-force_color_prompt=yes
-
 export TMOUT=8640000
+
+# colors
+force_color_prompt=yes
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
+export CLICOLOR=1
+#export LSCOLORS=ExFxBxDxCxegedabagacad # default
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # black background
+export GREP_OPTIONS='--color=auto'
+alias ls='ls -GFh'
+alias ll='ls -GFl'
 
 export SVN_EDITOR=vim
 export GIT_EDITOR=vim
-
-alias ll='ls -lF'
 
 alias vcurl='curl -o /dev/null -v 2>&1'
 alias qcurl='curl >/dev/null 2>&1'
