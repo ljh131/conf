@@ -1,7 +1,9 @@
 "
 " basic settings
 "
-if !has('gui_running')
+if has('gui_running')
+  set guifont=Monaco:h16
+else
   set t_Co=256
 endif
 
