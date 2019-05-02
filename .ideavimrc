@@ -3,10 +3,12 @@ source ~/.vimrc
 map mm :action ToggleBookmark<CR>
 map ma :action ShowBookmarks<CR>
 
+nnoremap <C-O> :action Back<CR>
+nnoremap <C-I> :action Forward<CR>
+
 # require Tab Shifter plugin 
 # https://github.com/dkandalov/tab-shifter
 map <C-W>H :action TabShiftActions.ShiftLeft<CR>
 map <C-W>J :action TabShiftActions.ShiftDown<CR>
 map <C-W>K :action TabShiftActions.ShiftUp<CR>
 map <C-W>L :action TabShiftActions.ShiftRight<CR>
-
