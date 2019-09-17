@@ -110,12 +110,11 @@ else
 endif
 
 " language specific
-Plugin 'pangloss/vim-javascript' 
-Plugin 'mxw/vim-jsx' 
+"Plugin 'pangloss/vim-javascript' 
+"Plugin 'mxw/vim-jsx' 
 "Plugin 'kchmck/vim-coffee-script'
-Plugin 'andreshazard/vim-freemarker'
-Plugin 'slim-template/vim-slim.git'
-Plugin 'elixir-editors/vim-elixir'
+"Plugin 'andreshazard/vim-freemarker'
+"Plugin 'slim-template/vim-slim.git'
 
 
 " All of your Plugins must be added before the following line
