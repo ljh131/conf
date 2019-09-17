@@ -2,6 +2,8 @@
 
 ulimit -c unlimited
 
+export HISTSIZE=999999
+export HISTFILESIZE=999999
 export TERM=xterm-256color
 export TMOUT=8640000
 
@@ -40,3 +42,12 @@ function save() {
   git diff > $branch_name-$date.patch
 }
 
+function jenv() {
+  if [ -z "$1" ]; then
+    java_home=$(/usr/libexec/java_home)
+  else
+    java_home=$(/usr/libexec/java_home -v$1)
+  fi
+  echo $java_home
+  export JAVA_HOME=$java_home
+}
