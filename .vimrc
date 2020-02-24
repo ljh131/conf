@@ -57,12 +57,14 @@ set backspace=indent,eol,start
 "
 inoremap jj <Esc>
 
-map <F5> :!rvm 2.2.4 do starscope; rvm 2.2.4 do starscope -e ctags; rvm 2.2.4 do starscope -e cscope<cr>:csc reset<cr>
+"map <F5> :!rvm 2.2.4 do starscope; rvm 2.2.4 do starscope -e ctags; rvm 2.2.4 do starscope -e cscope<cr>:csc reset<cr>
+map <F5> :!find . -name '*.c' -o -name '*.cpp' -o -name '*.cc' -o -name '*.h' > cscope.files; cscope -R -b; ctags -R<cr>
 map <F6> :cw<cr>
 map <F7> :tabp<cr>
 map <F8> :tabn<cr>
 map <F9> :tab sp<cr>
 map <F10> :vimgrep /TODO\\|FIXME\\|XXX/ %:p:h/*<cr>:cw<cr>
+map <F12> :TlistToggle<cr>
 
 map ,q :q<CR>
 map ,w :w<CR>
@@ -94,6 +96,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'The-NERD-tree'
+Plugin 'taglist.vim'
 Plugin 'ctrlp.vim'
 Plugin 'MattesGroeger/vim-bookmarks' " warn: it's too buggy!!!
 Plugin 'altercation/vim-colors-solarized'
@@ -136,6 +139,11 @@ filetype plugin indent on    " required
 "
 " plugins setting
 "
+
+""" Taglist
+let Tlist_Use_Right_Window   = 1
+
+
 """ NERDTree
 let NERDTreeWinPos = "left"
 nmap <F11> :NERDTreeToggle<CR>
