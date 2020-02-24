@@ -13,8 +13,5 @@
 	l = log --graph --all --decorate --pretty=format:'%C(auto)%h%C(auto)%d %C(reset)%s %C(bold white)(%cr) %C(reset)<%an>'
 [push]
 	default = simple
-[user]
-	email = teo.lee@kakaocorp.com
-	name = teo.lee
 [credential]
 	helper = osxkeychain
