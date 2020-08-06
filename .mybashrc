@@ -15,6 +15,7 @@ export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # black background
 export GREP_OPTIONS='--color=auto'
 alias ls='ls -GFh'
+alias l='ls'
 alias ll='ls -GFl'
 
 export SVN_EDITOR=vim
