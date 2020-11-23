@@ -15,3 +15,6 @@
 	default = simple
 [credential]
 	helper = osxkeychain
+[user]
+	email = ljh131@gmail.com
+	name = ljh131
