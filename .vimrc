@@ -52,6 +52,17 @@ set expandtab
 set backspace=indent,eol,start
 
 
+colorscheme darkblue
+
+" use diffrent color for vimdiff
+if &diff
+  hi DiffAdd         ctermbg=black       ctermfg=green       cterm=reverse
+  hi DiffChange      ctermbg=black       ctermfg=magenta     cterm=reverse
+  hi DiffDelete      ctermbg=black       ctermfg=darkred     cterm=reverse
+  hi DiffText        ctermbg=black       ctermfg=red         cterm=reverse
+endif
+
+
 "
 " key mappings
 "
@@ -99,7 +110,6 @@ Plugin 'The-NERD-tree'
 Plugin 'taglist.vim'
 Plugin 'ctrlp.vim'
 Plugin 'MattesGroeger/vim-bookmarks' " warn: it's too buggy!!!
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'itchyny/lightline.vim'
 Plugin 'mileszs/ack.vim'
 
@@ -115,9 +125,6 @@ endif
 " language specific
 "Plugin 'pangloss/vim-javascript' 
 "Plugin 'mxw/vim-jsx' 
-"Plugin 'kchmck/vim-coffee-script'
-"Plugin 'andreshazard/vim-freemarker'
-"Plugin 'slim-template/vim-slim.git'
 
 
 " All of your Plugins must be added before the following line
@@ -321,25 +328,6 @@ highlight BookmarkLine ctermbg=blue ctermfg=NONE
 let g:bookmark_sign = '⚑'
 let g:bookmark_highlight_lines = 1
 let g:bookmark_auto_save = 0
-
-
-""" airline
-"let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
-"let g:airline_theme='solarized'
-"let g:airline_solarized_bg='dark'
-
-
-""" solarized
-if &term =~ '256color'
-    " Disable Background Color Erase (BCE) so that color schemes
-    " work properly when Vim is used inside tmux and GNU screen.
-    set t_ut=
-endif
-
-"let g:solarized_termcolors=256	" enable this if you don't use solarized in terminal emulator
-syntax enable
-set background=dark
-colorscheme solarized
 
 
 """ lightline
