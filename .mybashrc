@@ -18,6 +18,9 @@ alias ls='ls -GFh'
 alias l='ls'
 alias ll='ls -GFl'
 
+export VISUAL=vim
+export EDITOR=vim
+
 export SVN_EDITOR=vim
 export GIT_EDITOR=vim
 
