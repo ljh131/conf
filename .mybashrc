@@ -9,6 +9,9 @@ export HISTFILESIZE=999999
 export TERM=xterm-256color
 export TMOUT=8640000
 
+export VISUAL=vim
+export EDITOR=vim
+
 # use vi mode in shell
 set -o vi
 #bind -m vi-insert "jj":vi-movement-mode
