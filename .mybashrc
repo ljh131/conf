@@ -2,10 +2,18 @@
 
 ulimit -c unlimited
 
+#export LANG=en_US
+
 export HISTSIZE=999999
 export HISTFILESIZE=999999
 export TERM=xterm-256color
 export TMOUT=8640000
+
+# use vi mode in shell
+set -o vi
+#bind -m vi-insert "jj":vi-movement-mode
+bind -m vi-insert "\C-p":previous-history
+bind -m vi-insert "\C-n":next-history
 
 # colors
 force_color_prompt=yes
@@ -14,34 +22,35 @@ export CLICOLOR=1
 #export LSCOLORS=ExFxBxDxCxegedabagacad # default
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # black background
 export GREP_OPTIONS='--color=auto'
+
 alias ls='ls -GFh'
 alias l='ls'
 alias ll='ls -GFl'
 
-export SVN_EDITOR=vim
-export GIT_EDITOR=vim
+
+## curl
 
 alias vcurl='curl -o /dev/null -v 2>&1'
 alias qcurl='curl >/dev/null 2>&1'
 
+
+## search
+
 function search() {
 	pat=$1
-	echo $pat
-  fgrep "$pat" . -r -I -i
+	echo "search $pat"
+  egrep "$pat" . -r -I -i
 }
 
 function searcht() {
   ext=$1
 	pat=$2
-  echo "$pat (*.$ext)"
-  fgrep "$pat" . -r -I -i --include=\*.$ext
+  echo "search $pat (*.$ext)"
+  egrep "$pat" . -r -I -i --include=\*.$ext
 }
 
-function save() {
-  branch_name=$(git symbolic-ref --short HEAD|sed "s/\//-/g")
-  date=$(date +"%Y%m%d_%H%M%S")
-  git diff > $branch_name-$date.patch
-}
+
+## java
 
 function jenv() {
   if [ -z "$1" ]; then
@@ -52,3 +61,47 @@ function jenv() {
   echo $java_home
   export JAVA_HOME=$java_home
 }
+
+
+## git
+
+export GIT_EDITOR=vim
+
+function save() {
+  branch_name=$(git symbolic-ref --short HEAD|sed "s/\//-/g")
+  date=$(date +"%Y%m%d_%H%M%S")
+  git diff > $branch_name-$date.patch
+}
+
+function mergeinto() {
+  target=${1:-develop}
+  cur=$(git branch --show-current) 
+
+  git checkout $target && git pull && git merge --no-edit $cur
+  
+  echo -e "\nmerged branch ($target <- $cur) will be pushed in few seconds..."
+  sleep 5
+
+  git push && git checkout $cur
+}
+
+
+## k8s
+
+alias ku='kubectl'
+alias kl='kubectl logs --max-log-requests 999 --ignore-errors=true'
+alias kctx='kubectl config current-context'
+
+function klogs() {
+  ns=$1
+  app=$1
+  echo "$ns:ns app:$app"
+  kubectl logs -n $ns -l app=$app --max-log-requests 999 --prefix --ignore-errors=true $2
+}
+
+function kbash() {
+  ns=$1
+  pod=$2
+  ku exec -it --namespace=$ns $pod -- bash
+}
+

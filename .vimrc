@@ -3,6 +3,7 @@
 "
 if has('gui_running')
   set guifont=Monaco:h16
+  let macvim_skip_colorscheme=1
 else
   set t_Co=256
 endif
