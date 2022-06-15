@@ -81,6 +81,10 @@ function mergeinto() {
   cur=$(git branch --show-current) 
 
   git checkout $target && git pull && git merge --no-edit $cur
+  if [ "$rc" != 0 ]; then
+    echo "abort"
+    return
+  fi
   
   echo -e "\nmerged branch ($target <- $cur) will be pushed in few seconds..."
   sleep 5
@@ -98,7 +102,7 @@ alias kctx='kubectl config current-context'
 function klogs() {
   ns=$1
   app=$1
-  echo "$ns:ns app:$app"
+  echo "ns:$ns app:$app"
   kubectl logs -n $ns -l app=$app --max-log-requests 999 --prefix --ignore-errors=true $2
 }
 
