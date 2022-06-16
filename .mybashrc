@@ -81,7 +81,7 @@ function mergeinto() {
   cur=$(git branch --show-current) 
 
   git checkout $target && git pull && git merge --no-edit $cur
-  if [ "$rc" != 0 ]; then
+  if [ $? -ne 0 ]; then
     echo "abort"
     return
   fi
