@@ -1,5 +1,14 @@
 source ~/.vimrc
 
+# https://github.com/JetBrains/ideavim/blob/master/doc/sethandler.md
+sethandler <C-D> a:ide
+#sethandler <C-R> a:ide
+sethandler <F5> a:ide
+sethandler <F6> a:ide
+sethandler <F7> a:ide
+sethandler <F8> a:ide
+sethandler <F9> a:ide
+
 map mm :action ToggleBookmark<CR>
 map ma :action ShowBookmarks<CR>
 
