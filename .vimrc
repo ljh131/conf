@@ -36,7 +36,7 @@ set hlsearch
 set ignorecase
 set noincsearch " explicit for nvim
 set ru
-set noic
+set ic
 
 set scs
 "set ls=2

@@ -9,6 +9,8 @@ sethandler <F7> a:ide
 sethandler <F8> a:ide
 sethandler <F9> a:ide
 
+set ideajoin
+
 map mm :action ToggleBookmark<CR>
 map ma :action ShowBookmarks<CR>
 
